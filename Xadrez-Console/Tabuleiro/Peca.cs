@@ -1,4 +1,5 @@
 ﻿using Tabuleiro.Enum;
+using Tabuleiro;
 
 namespace Tabuleiro
 {
@@ -9,9 +10,9 @@ namespace Tabuleiro
         public int QteMovimentos { get; protected set; }
         public XTabuleiro Tab { get; protected set; }
 
-        public Peca(Posicao posicao, Cor cor, XTabuleiro tab)
+        public Peca(Cor cor, XTabuleiro tab)
         {
-            Posicao = posicao;
+            Posicao = null;
             Cor = cor;
             Tab = tab;
             QteMovimentos = 0;

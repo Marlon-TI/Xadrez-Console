@@ -1,5 +1,5 @@
 ﻿
-
+using Tabuleiro.Enum;
 namespace Tabuleiro
 {
     class XTabuleiro
@@ -17,6 +17,12 @@ namespace Tabuleiro
         public Peca peca (int linha, int colunas)
         {
             return pecas[linha , colunas];
+        }
+
+        public void ColocarPeca (Peca p, Posicao pos)
+        {
+            pecas[pos.Linha, pos.Coluna]=p;
+            p.Posicao = pos;
         }
     }
 }
