@@ -8,7 +8,7 @@ namespace Xadrez_Console
         static void Main(string[] args)
         {
             XTabuleiro teste = new XTabuleiro (8,8);
-            
+            Tela.ImprimirTabuleiro(teste);
 
         }
     }
