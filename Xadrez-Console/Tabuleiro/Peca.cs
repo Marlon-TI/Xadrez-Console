@@ -5,7 +5,7 @@ namespace Tabuleiro
 {
     class Peca
     {
-        public Posicao Posicao  { get; set; }
+        public Posicao Posicao { get; set; }
         public Cor Cor { get; protected set; }
         public int QteMovimentos { get; protected set; }
         public XTabuleiro Tab { get; protected set; }
@@ -16,6 +16,11 @@ namespace Tabuleiro
             Cor = cor;
             Tab = tab;
             QteMovimentos = 0;
+        }
+
+        public void IncrementarQteMovimentos()
+        {
+            QteMovimentos++;
         }
     }
 }
