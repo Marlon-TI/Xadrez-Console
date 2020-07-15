@@ -16,6 +16,10 @@ namespace Xadrez_Console
             Console.WriteLine();
             Console.WriteLine("Turno: " + partida.Turno);
             Console.WriteLine("Aguardando jogado: " + partida.JogadorAtual);
+            if (partida.Xeque)
+            {
+                Console.WriteLine("XEQUE");
+            }
 
         }
         public static void ImprimirConjunto(HashSet<Peca> conjuto)
