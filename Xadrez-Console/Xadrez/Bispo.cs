@@ -1,81 +1,67 @@
-﻿using Tabuleiro;
-using Tabuleiro.Enum;
+﻿using tabuleiro;
 
-namespace Xadrez
-{
-    class Bispo : Peca
-    {
-        public Bispo(XTabuleiro tab, Cor cor) : base(cor, tab)
-        {
+namespace xadrez {
+
+    class Bispo : Peca {
+
+        public Bispo(Tabuleiro tab, Cor cor) : base(tab, cor) {
         }
 
-        public override string ToString()
-        {
+        public override string ToString() {
             return "B";
         }
 
-        private bool podeMover(Posicao pos)
-        {
-            Peca p = Tab.peca(pos);
-            return p == null || p.Cor != Cor;
+        private bool podeMover(Posicao pos) {
+            Peca p = tab.peca(pos);
+            return p == null || p.cor != cor;
         }
-
-        public override bool[,] MovimentosPossiveis()
-        {
-            bool[,] mat = new bool[Tab.Linhas, Tab.Colunas];
+        
+        public override bool[,] movimentosPossiveis() {
+            bool[,] mat = new bool[tab.linhas, tab.colunas];
 
             Posicao pos = new Posicao(0, 0);
 
             // NO
-            pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna - 1);
-            while (Tab.PosicaoValida(pos) && podeMover(pos))
-            {
-                mat[pos.Linha, pos.Coluna] = true;
-                if (Tab.peca(pos) != null && Tab.peca(pos).Cor != Cor)
-                {
+            pos.definirValores(posicao.linha - 1, posicao.coluna - 1);
+            while (tab.posicaoValida(pos) && podeMover(pos)) {
+                mat[pos.linha, pos.coluna] = true;
+                if (tab.peca(pos) != null && tab.peca(pos).cor != cor) {
                     break;
                 }
-                pos.DefinirValores(pos.Linha - 1, pos.Coluna - 1);
+                pos.definirValores(pos.linha - 1, pos.coluna - 1);
             }
 
             // NE
-            pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna + 1);
-            while (Tab.PosicaoValida(pos) && podeMover(pos))
-            {
-                mat[pos.Linha, pos.Coluna] = true;
-                if (Tab.peca(pos) != null && Tab.peca(pos).Cor != Cor)
-                {
+            pos.definirValores(posicao.linha - 1, posicao.coluna + 1);
+            while (tab.posicaoValida(pos) && podeMover(pos)) {
+                mat[pos.linha, pos.coluna] = true;
+                if (tab.peca(pos) != null && tab.peca(pos).cor != cor) {
                     break;
                 }
-                pos.DefinirValores(pos.Linha - 1, pos.Coluna + 1);
+                pos.definirValores(pos.linha - 1, pos.coluna + 1);
             }
 
             // SE
-            pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna + 1);
-            while (Tab.PosicaoValida(pos) && podeMover(pos))
-            {
-                mat[pos.Linha, pos.Coluna] = true;
-                if (Tab.peca(pos) != null && Tab.peca(pos).Cor != Cor)
-                {
+            pos.definirValores(posicao.linha + 1, posicao.coluna + 1);
+            while (tab.posicaoValida(pos) && podeMover(pos)) {
+                mat[pos.linha, pos.coluna] = true;
+                if (tab.peca(pos) != null && tab.peca(pos).cor != cor) {
                     break;
                 }
-                pos.DefinirValores(pos.Linha + 1, pos.Coluna + 1);
+                pos.definirValores(pos.linha + 1, pos.coluna + 1);
             }
 
             // SO
-            pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna - 1);
-            while (Tab.PosicaoValida(pos) && podeMover(pos))
-            {
-                mat[pos.Linha, pos.Coluna] = true;
-                if (Tab.peca(pos) != null && Tab.peca(pos).Cor != Cor)
-                {
+            pos.definirValores(posicao.linha + 1, posicao.coluna - 1);
+            while (tab.posicaoValida(pos) && podeMover(pos)) {
+                mat[pos.linha, pos.coluna] = true;
+                if (tab.peca(pos) != null && tab.peca(pos).cor != cor) {
                     break;
                 }
-                pos.DefinirValores(pos.Linha + 1, pos.Coluna - 1);
+                pos.definirValores(pos.linha + 1, pos.coluna - 1);
             }
 
             return mat;
         }
     }
 }
-

@@ -1,77 +1,66 @@
-﻿using Tabuleiro;
-using Tabuleiro.Enum;
+﻿using tabuleiro;
 
-namespace Xadrez
-{
-    class Torre : Peca
-    {
-        public Torre (XTabuleiro tab, Cor cor) : base(cor, tab)
-        {
+namespace xadrez {
+    class Torre : Peca {
 
+        public Torre(Tabuleiro tab, Cor cor) : base(tab, cor) {
         }
 
-        private bool PodeMover(Posicao pos)
-        {
-            Peca p = Tab.peca(pos);
-            return p == null || p.Cor != Cor;
+        public override string ToString() {
+            return "T";
         }
-        public override bool[,] MovimentosPossiveis()
-        {
-            bool[,] mat = new bool[Tab.Linhas, Tab.Colunas];
+
+        private bool podeMover(Posicao pos) {
+            Peca p = tab.peca(pos);
+            return p == null || p.cor != cor;
+        }
+
+        public override bool[,] movimentosPossiveis() {
+            bool[,] mat = new bool[tab.linhas, tab.colunas];
 
             Posicao pos = new Posicao(0, 0);
 
-            //Acima
-            pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna);
-            while (Tab.PosicaoValida(pos) && PodeMover(pos))
-            {
-                mat[pos.Linha, pos.Coluna] = true;
-                if (Tab.peca(pos) != null && Tab.peca(pos).Cor != Cor)
-                {
+            // acima
+            pos.definirValores(posicao.linha - 1, posicao.coluna);
+            while (tab.posicaoValida(pos) && podeMover(pos)) {
+                mat[pos.linha, pos.coluna] = true;
+                if (tab.peca(pos) != null && tab.peca(pos).cor != cor) {
                     break;
                 }
-                pos.Linha = pos.Linha - 1;
+                pos.linha = pos.linha - 1;
             }
-            //Abaixo
-            pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna);
-            while (Tab.PosicaoValida(pos) && PodeMover(pos))
-            {
-                mat[pos.Linha, pos.Coluna] = true;
-                if (Tab.peca(pos) != null && Tab.peca(pos).Cor != Cor)
-                {
+
+            // abaixo
+            pos.definirValores(posicao.linha + 1, posicao.coluna);
+            while (tab.posicaoValida(pos) && podeMover(pos)) {
+                mat[pos.linha, pos.coluna] = true;
+                if (tab.peca(pos) != null && tab.peca(pos).cor != cor) {
                     break;
                 }
-                pos.Linha = pos.Linha + 1;
+                pos.linha = pos.linha + 1;
             }
-            //Direita
-            pos.DefinirValores(Posicao.Linha , Posicao.Coluna + 1);
-            while (Tab.PosicaoValida(pos) && PodeMover(pos))
-            {
-                mat[pos.Linha, pos.Coluna] = true;
-                if (Tab.peca(pos) != null && Tab.peca(pos).Cor != Cor)
-                {
+
+            // direita
+            pos.definirValores(posicao.linha, posicao.coluna + 1);
+            while (tab.posicaoValida(pos) && podeMover(pos)) {
+                mat[pos.linha, pos.coluna] = true;
+                if (tab.peca(pos) != null && tab.peca(pos).cor != cor) {
                     break;
                 }
-                pos.Coluna = pos.Coluna + 1;
+                pos.coluna = pos.coluna + 1;
             }
-            //Esquerda
-            pos.DefinirValores(Posicao.Linha, Posicao.Coluna - 1);
-            while (Tab.PosicaoValida(pos) && PodeMover(pos))
-            {
-                mat[pos.Linha, pos.Coluna] = true;
-                if (Tab.peca(pos) != null && Tab.peca(pos).Cor != Cor)
-                {
+
+            // esquerda
+            pos.definirValores(posicao.linha, posicao.coluna - 1);
+            while (tab.posicaoValida(pos) && podeMover(pos)) {
+                mat[pos.linha, pos.coluna] = true;
+                if (tab.peca(pos) != null && tab.peca(pos).cor != cor) {
                     break;
                 }
-                pos.Coluna = pos.Coluna - 1;
+                pos.coluna = pos.coluna - 1;
             }
 
             return mat;
-        }
-
-        public override string ToString()
-        {
-            return "T";
         }
     }
 }
